@@ -85,7 +85,7 @@ public class JobData {
 
         return jobs;
     }
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
 
         loadData();
 
@@ -101,8 +101,9 @@ public class JobData {
                 a = a.toLowerCase();
                 b = b.toLowerCase();
 //add values to row from both strings
-                if(a.contains(value) || b.contains(value)) {
+                if(a.contains(searchTerm) || b.contains(searchTerm)) {
                     jobs.add(row);
+                    break;
                 }
             }
         }
