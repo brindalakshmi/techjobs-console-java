@@ -78,37 +78,33 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value)) {
                 jobs.add(row);
             }
         }
 
         return jobs;
     }
-    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         loadData();
-
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for(HashMap<String, String> row : allJobs){
 
-            for (Map.Entry<String, String> column : row.entrySet()) {
-//get keys from column for string
+            for (Map.Entry<String, String> column : row.entrySet()){
                 String a = column.getKey();
-                String b = column.getKey();
-//make strings lowercase
-                a = a.toLowerCase();
-                b = b.toLowerCase();
-//add values to row from both strings
-                if(a.contains(searchTerm) || b.contains(searchTerm)) {
+                String b = column.getValue();
+
+                if (a.toLowerCase().contains(value) || b.toLowerCase().contains(value)){
                     jobs.add(row);
-                    break;
                 }
             }
         }
         return jobs;
     }
+
+
     /**
      * Read in data from a CSV file and store it in a list
      */
